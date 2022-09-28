@@ -1,12 +1,14 @@
 #include <iostream>
 #include <ctime>
 #include <unistd.h>
+#include <cstdlib>
 
 using namespace std;
 
 int main()
 {
     int win;
+    char inputC[4];
     int input;
     int computerNum[4];
     int playerNum[4];
@@ -46,7 +48,9 @@ int main()
         {
             int f = 0;
             cout << "Введите свое число (4 цифры)" << endl;
-            cin >> input;
+            cin >> inputC;
+
+            input = atoi(inputC);
 
             // запись полученного числа в массив
             for (int i = 0; i < 4; ++i)
@@ -58,7 +62,7 @@ int main()
                 {
                     if (playerNum[3 - i] == playerNum[j])
                     {
-                        cout << "Нельзя вводить число с повторяющимеся цифрами" << endl;
+                        cout << "Нельзя вводить комбинацию с повторяющимеся цифрами или содержащую буквы" << endl;
                         cout << "____________________________" << endl;
                         cout << endl;
                         f = 1;
