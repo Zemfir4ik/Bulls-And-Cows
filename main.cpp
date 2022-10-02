@@ -22,9 +22,9 @@ int main()
 
         for (int c = 0; c < 5; ++c)
         {
-            for (int j = 0; j <= i; ++j)
+            for (int j = 0; j < i; ++j)
             {
-                if (computerNum[i] == computerNum[i - j])
+                if (computerNum[i] == computerNum[j])
                 {
                     computerNum[i] += 1;
                     computerNum[i] %= 10;
@@ -33,7 +33,7 @@ int main()
         }
     }
 
-    // если расскоментировть 36 - 40 строки, то будет показываться созаднный набор чисел
+    // если расскоментировть 38 - 42 строки, то будет показываться созаднный набор чисел
 
     // for (int i = 0; i < 4; ++i)
     // {
@@ -44,39 +44,47 @@ int main()
     // главный игровой цикл
     while (win != 4)
     {
-        while (true)
+        int f = 1;
+        while (f != 0)
         {
-            int f = 0;
+            f = 0;
+
             cout << "Введите свое число (4 цифры)" << endl;
             cin >> inputC;
 
             input = atoi(inputC);
 
-            // запись полученного числа в массив
-            for (int i = 0; i < 4; ++i)
+            if (input > 9999)
             {
-                playerNum[3 - i] = input % 10;
-                input /= 10;
-
-                for (int j = 3; j > 3 - i; --j)
+                cout << "Число не может превышать 9876" << endl;
+                cout << "____________________________" << endl;
+                cout << endl;
+                f = 1;
+            }
+            else
+            {
+                // запись полученного числа в массив
+                for (int i = 0; i < 4 || f == 1; ++i)
                 {
-                    if (playerNum[3 - i] == playerNum[j])
+                    playerNum[3 - i] = input % 10;
+                    input /= 10;
+
+                    for (int j = 3; j > 3 - i; --j)
                     {
-                        cout << "Нельзя вводить комбинацию с повторяющимеся цифрами или содержащую буквы" << endl;
-                        cout << "____________________________" << endl;
-                        cout << endl;
-                        f = 1;
+                        if (playerNum[3 - i] == playerNum[j])
+                        {
+                            cout << "Нельзя вводить комбинацию с повторяющимеся цифрами или содержащую буквы" << endl;
+                            cout << "____________________________" << endl;
+                            cout << endl;
+                            f = 1;
+                            break;
+                        }
+                    }
+                    if (f == 1)
+                    {
                         break;
                     }
                 }
-                if (f == 1)
-                {
-                    break;
-                }
-            }
-            if (f != 1)
-            {
-                break;
             }
         }
 
